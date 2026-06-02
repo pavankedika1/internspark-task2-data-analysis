@@ -1,0 +1,65 @@
+DATASET OVERVIEW 
+Shape: (10000, 5)
+
+First 5 Rows:
+   ID        Name Department  Age  Salary
+0   1  Employee_1         HR   35  116849
+1   2  Employee_2      Sales   48  100993
+2   3  Employee_3      Sales   36   53258
+3   4  Employee_4         IT   60   40042
+4   5  Employee_5  Marketing   57  115052
+
+MISSING VALUES 
+ID            0
+Name          0
+Department    0
+Age           0
+Salary        0
+dtype: int64
+
+SUMMARY STATISTICS
+                ID           Age         Salary
+count  10000.00000  10000.000000   10000.000000
+mean    5000.50000     40.971500   77109.678400
+std     2886.89568     11.243101   24592.053019
+min        1.00000     22.000000   35059.000000
+25%     2500.75000     31.000000   55693.250000
+50%     5000.50000     41.000000   76239.000000
+75%     7500.25000     51.000000   98789.250000
+max    10000.00000     60.000000  119985.000000
+
+EMPLOYEES WITH SALARY > 80000 
+   ID        Name Department  Age  Salary
+0   1  Employee_1         HR   35  116849
+1   2  Employee_2      Sales   48  100993
+4   5  Employee_5  Marketing   57  115052
+5   6  Employee_6         HR   44  103682
+7   8  Employee_8    Finance   58  104516
+Total Employees: 4593
+
+DEPARTMENT SUMMARY
+                  Salary                       Age
+                    mean     max    min       mean
+Department                                        
+Finance     77226.986967  119931  35146  41.204511
+HR          77144.588320  119931  35074  41.026807
+IT          77670.704498  119968  35128  40.574268
+Marketing   76868.192401  119985  35063  40.867024
+Sales       76656.644798  119865  35059  41.173244
+
+ EMPLOYEE COUNT BY DEPARTMENT
+Department
+HR           2089
+Marketing    2053
+Finance      1995
+Sales        1951
+IT           1912
+Name: count, dtype: int64
+
+ HIGHEST PAID EMPLOYEE 
+ID                     3730
+Name          Employee_3730
+Department        Marketing
+Age                      56
+Salary               119985
+Name: 3729, dtype: object
