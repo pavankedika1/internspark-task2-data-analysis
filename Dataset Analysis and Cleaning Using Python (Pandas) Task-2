@@ -1,0 +1,97 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+# Load Dataset
+df = pd.read_csv("dataset.csv")
+
+# Display Basic Information
+print("DATASET OVERVIEW ")
+print("Shape:", df.shape)
+print("\nFirst 5 Rows:")
+print(df.head())
+
+# Check Missing Values
+print("\nMISSING VALUES ")
+print(df.isnull().sum())
+
+# Remove Duplicates
+df.drop_duplicates(inplace=True)
+
+# Summary Statistics
+print("\nSUMMARY STATISTICS")
+print(df.describe())
+
+# Filter Employees with Salary > 80000
+high_salary = df[df["Salary"] > 80000]
+
+print("\nEMPLOYEES WITH SALARY > 80000 ")
+print(high_salary.head())
+print("Total Employees:", len(high_salary))
+
+# Group By Department
+dept_summary = df.groupby("Department").agg({
+    "Salary": ["mean", "max", "min"],
+    "Age": "mean"
+})
+print("\nDEPARTMENT SUMMARY")
+print(dept_summary)
+
+# Employee Count by Department
+employee_count = df["Department"].value_counts()
+print("\n EMPLOYEE COUNT BY DEPARTMENT")
+print(employee_count)
+
+# Highest Paid Employee
+highest_paid = df.loc[df["Salary"].idxmax()]
+
+print("\n HIGHEST PAID EMPLOYEE ")
+print(highest_paid)
+
+# Save Cleaned Dataset
+df.to_csv("cleaned_dataset.csv", index=False)
+
+# ---------------- VISUALIZATIONS ----------------
+# Average Salary by Department
+avg_salary = df.groupby("Department")["Salary"].mean()
+plt.figure(figsize=(8, 5))
+avg_salary.plot(kind="bar")
+plt.title("Average Salary by Department")
+plt.xlabel("Department")
+plt.ylabel("Average Salary")
+plt.tight_layout()
+plt.show()
+
+# Salary Distribution
+plt.figure(figsize=(8, 5))
+plt.hist(df["Salary"], bins=20)
+plt.title("Salary Distribution")
+plt.xlabel("Salary")
+plt.ylabel("Frequency")
+plt.tight_layout()
+plt.show()
+
+# Employee Count by Department
+plt.figure(figsize=(8, 5))
+employee_count.plot(kind="bar")
+plt.title("Employee Count by Department")
+plt.xlabel("Department")
+plt.ylabel("Number of Employees")
+plt.tight_layout()
+plt.show()
+
+# Age vs Salary Scatter Plot
+plt.figure(figsize=(8, 5))
+plt.scatter(df["Age"], df["Salary"])
+plt.title("Age vs Salary")
+plt.xlabel("Age")
+plt.ylabel("Salary")
+plt.tight_layout()
+plt.show()
+
+# Insights
+print("\n===== INSIGHTS =====")
+print(f"Total Employees: {len(df)}")
+print(f"Average Salary: {df['Salary'].mean():.2f}")
+print(f"Average Age: {df['Age'].mean():.2f}")
+print(f"Highest Salary: {df['Salary'].max()}")
+print(f"Lowest Salary: {df['Salary'].min()}")
+print("Dataset cleaned and analyzed successfully.")
